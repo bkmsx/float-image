@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
         mMainLayout = (RelativeLayout) findViewById(R.id.activity_main);
         String imagePath = Environment.getExternalStorageDirectory() + "/a.png";
         Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
-        floatImage = new FloatImage(this, bitmap);
-        mMainLayout.addView(floatImage);
+//        floatImage = new FloatImage(this, bitmap);
+//        mMainLayout.addView(floatImage);
+        FloatText floatText = new FloatText(this, "Lai Trung Tien");
+        mMainLayout.addView(floatText);
     }
-
-
 }
