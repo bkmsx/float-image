@@ -77,6 +77,10 @@ public class FloatImage extends ImageView {
         drawBorder = true;
     }
 
+    public void drawBorder(boolean draw){
+        drawBorder = draw;
+    }
+
     private void setCompactLayout(){
         translateX = (int) (maxDimensionLayout-widthScale)/2;
         translateY = (int) (maxDimensionLayout-heightScale)/2;
