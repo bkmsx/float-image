@@ -6,23 +6,44 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements FloatImage.OnFloatImageListener {
     RelativeLayout mMainLayout;
-    FloatImage floatImage;
+    List<FloatImage> stickers = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mMainLayout = (RelativeLayout) findViewById(R.id.activity_main);
-        String imagePath = Environment.getExternalStorageDirectory() + "/a.png";
-        Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
-//        floatImage = new FloatImage(this, bitmap);
-//        mMainLayout.addView(floatImage);
-        FloatText floatText = new FloatText(this, "Lai Trung Tien");
-        mMainLayout.addView(floatText);
+        for (int i = 0; i < 2; i++) {
+            FloatImage floatImage = new FloatImage(this);
+            floatImage.setCallback(this);
+            mMainLayout.addView(floatImage);
+            stickers.add(floatImage);
+        }
+    }
+
+    @Override
+    public void onDeleteStickerClick(FloatImage sticker) {
+        mMainLayout.removeView(sticker);
+    }
+
+    @Override
+    public void onStickerClick (float x, float y, FloatImage sticker) {
+        for (FloatImage floatImage : stickers) {
+            if (!floatImage.equals(sticker)) {
+                if (x < floatImage.highX && x > floatImage.lowX && y < floatImage.highY && y > floatImage.lowY) {
+                    floatImage.selectSticker();
+                } else {
+                    floatImage.unselectSticker();
+                }
+            }
+        }
     }
 }

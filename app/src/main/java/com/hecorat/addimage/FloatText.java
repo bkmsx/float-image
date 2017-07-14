@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 
 
 /**
- * Created by TienDam on 11/14/2016.
+ * Created by  on 11/14/2016.
  */
 
 public class FloatText extends ImageView {
