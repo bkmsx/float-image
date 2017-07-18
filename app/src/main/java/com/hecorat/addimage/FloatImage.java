@@ -39,7 +39,7 @@ public class FloatImage extends AppCompatImageView {
     public String stickerPath = "http://www.unixstickers.com/image/data/stickers/gruntjs/Grunt.sh.png";
 
     private Bitmap bitmapSticker, mainBitmap, rotateBitmap, scaleBitmap, deleteBitmap;
-    private Paint paint;
+    private Paint paint = new Paint();
     private RelativeLayout.LayoutParams params;
     private Rect rectBorder;
 
@@ -57,7 +57,7 @@ public class FloatImage extends AppCompatImageView {
     private boolean isCompact;
     private boolean drawBorder;
     private int maxDimensionLayout;
-    private Matrix matrix;
+    private Matrix matrix = new Matrix();
     private DashPathEffect dashPathEffect = new DashPathEffect(new float[]{6, 4}, 0);
     private OnFloatImageListener callback;
 
